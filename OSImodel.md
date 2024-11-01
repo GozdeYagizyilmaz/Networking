@@ -34,22 +34,33 @@ Bunun anlamı, TCP'nin genellikle doğruluğun hıza tercih edildiği durumlarda
 
 ### Katman 3 - Ağ:
 
+OSI modelinin üçüncü katmanı (ağ katmanı), verilerin yönlendirilmesi ve yeniden birleştirilmesinin büyüsünün gerçekleştiği yerdir (bu küçük parçalardan daha büyük parçaya). Öncelikle, yönlendirme basitçe bu veri parçalarının gönderilmesi gereken en uygun yolu belirler. Bu katmandaki bazı protokoller, verilerin bir cihaza ulaşmak için izlemesi gereken "en uygun" yolun ne olduğunu tam olarak belirlerken, bunların varlığını yalnızca ağ modülünün bu aşamasında bilmeliyiz. Kısaca, bu protokoller OSPF (Open Shortest Path First) ve RIP'yi (Routing Information Protocol) içerir. Hangi yolun izleneceği konusunda karar veren faktörler aşağıdakiler tarafından belirlenir:
+
+**Hangi yol en kısadır?** Yani, paketin geçmesi gereken en az sayıda cihaza sahiptir. 
+
+**Hangi yol en güvenilirdir?** Yani, daha önce bu yolda paketler kayboldu mu? 
+
+**Hangi yolun daha hızlı fiziksel bağlantısı vardır?** Yani, bir yol bakır bağlantı mı (daha yavaş) yoksa fiber mi (önemli ölçüde daha hızlı) kullanıyor? 
+
+Bu katmanda, her şey 192.168.1.100 gibi IP adresleri aracılığıyla ele alınır. IP adreslerini kullanarak paketleri teslim edebilen yönlendiriciler gibi cihazlar, OSI modelinin üçüncü katmanında çalışabildikleri için 3. Katman cihazları olarak bilinir.
+
 Ağ katmanı, isteğinizin hedefini bulmaktan sorumludur.Örneğin İnternet çok büyük bir ağdır; Bir web sayfasından bilgi istemek istediğinizde, sayfanın IP adresini alan ve izlenecek en iyi rotayı belirleyen ağ katmanıdır.
 Bu aşamada Mantıksal adresleme (yani IP adresleri) olarak adlandırılan şeyle çalışıyoruz.Mantıksal adresler ağlara düzen sağlamak, onları kategorilere ayırmak ve doğru şekilde sıralamamızı sağlamak için kullanılır.
 Şu anda mantıksal adreslemenin en yaygın biçimi, muhtemelen zaten aşina olacağınız IPV4 biçimidir (ör. 192.168.1.1, ev yönlendiricisi için ortak bir adrestir).
 
 ### Katman 2 - Veri Bağlantısı:
 
-Veri bağlantı katmanı iletimin fiziksel adreslenmesine odaklanır.Ağ katmanından (uzaktaki bilgisayarın IP adresini içeren) bir paket alır ve alıcı uç noktanın fiziksel (MAC) adresini ekler.
-Ağ özellikli her bilgisayarın içinde, onu tanımlamak için benzersiz bir MAC (Medya Erişim Kontrolü) adresiyle birlikte gelen bir Ağ Arayüzü Kartı (NIC) bulunur.
+Veri bağlantı katmanı, iletim için fiziksel adreslemeye odaklanır. Ağ katmanından bir paket alır (uzak bilgisayar için IP adresi dahil) ve alıcı uç noktanın fiziksel MAC (Medya Erişim Kontrolü) adresini ekler. Ağa bağlı her bilgisayarın içinde, onu tanımlamak için benzersiz bir MAC adresiyle gelen bir Ağ Arabirim Kartı (NIC) bulunur. MAC adresleri üretici tarafından ayarlanır ve kelimenin tam anlamıyla karta yazılır; değiştirilemezler - ancak taklit edilebilirler. Bilgi bir ağ üzerinden gönderildiğinde, aslında bilginin tam olarak nereye gönderileceğini tanımlamak için kullanılan fiziksel adrestir. Ek olarak, veriyi iletim için uygun bir biçimde sunmak da veri bağlantı katmanının görevidir.
 
 **MAC Adresi : Bilgi bir ağ üzerinden gönderildiğinde, aslında bilginin tam olarak nereye gönderileceğini belirlemek için kullanılan fiziksel adrestir.**
 
-Ek olarak, veriyi iletime uygun bir formatta sunmak da veri bağlantı katmanının görevidir.
 
 ### Katman 1 - Fiziksel:
 
 Fiziksel katman bilgisayarın donanımına kadar uzanır.Burası bir ağ üzerinden veri aktarımını oluşturan elektrik darbelerinin gönderildiği ve alındığı yerdir.
 İletimdeki ikili verileri sinyallere dönüştürmek ve bunları ağ üzerinden iletmek, ayrıca gelen sinyalleri alıp bunları tekrar ikili verilere dönüştürmek fiziksel katmanın görevidir.
+Bu katman, kavranması en kolay katmanlardan biridir. Basitçe söylemek gerekirse, bu katman ağda kullanılan donanımın fiziksel bileşenlerine atıfta bulunur ve bulabileceğiniz en alt katmandır. Aygıtlar, ikili sayı sisteminde (1'ler ve 0'lar) birbirleri arasında veri aktarmak için elektrik sinyallerini kullanır. 
+
+
 
 
